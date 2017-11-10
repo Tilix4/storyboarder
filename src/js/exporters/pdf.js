@@ -258,6 +258,7 @@ const generatePDF = (paperSize, layout='landscape', rows, cols, spacing, boardDa
       }
     }
   
+    /*
     doc.save()
     doc.translate(doc.page.width-margin[2]-105, doc.page.height-margin[3])
     doc.scale(0.3)
@@ -278,6 +279,10 @@ const generatePDF = (paperSize, layout='landscape', rows, cols, spacing, boardDa
     doc.fontSize(6)
     doc.font('thin')
     doc.text('|   Storyboarder', doc.page.width-margin[2]-50, doc.page.height-margin[3]-1.0, {width: 50, align: 'right'})
+    */
+    doc.fontSize(6)
+    doc.font('thin')
+    doc.text('Élie Michel   |   Storyboarder', doc.page.width-margin[2]-100, doc.page.height-margin[3]-1.0, {width: 100, align: 'right'})
   }
   doc.end()
 }

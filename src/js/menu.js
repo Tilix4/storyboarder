@@ -103,9 +103,9 @@ AppMenu.File = () => ({
       }
     },
     {
-      label: 'Export Scene for Final Cut Pro X and Premiere',
+      label: 'Export Scene to XML for Editing',
       click (item, focusedWindow, event) {
-        ipcRenderer.send('exportFcp')
+        ipcRenderer.send('exportXml')
       }
     },
     {

@@ -19,6 +19,7 @@ const {
 
 const exporterFcpX = require('../exporters/final-cut-pro-x')
 const exporterFcp = require('../exporters/final-cut-pro')
+const exporterKdenlive = require('../exporters/kdenlive')
 const exporterPDF = require('../exporters/pdf')
 const exporterCleanup = require('../exporters/cleanup')
 const exporterFfmpeg = require('../exporters/ffmpeg')
@@ -50,7 +51,7 @@ class Exporter {
     })
   }
 
-  async exportFcp (boardData, projectFileAbsolutePath) {
+  async exportXml (boardData, projectFileAbsolutePath) {
     let exportsPath = ensureExportsPathExists(projectFileAbsolutePath)
 
     let basename = path.basename(projectFileAbsolutePath)
@@ -69,6 +70,10 @@ class Exporter {
     let fcpxData = await exporterFcpX.generateFinalCutProXData(boardData, { projectFileAbsolutePath, outputPath })
     let fcpxml = exporterFcpX.generateFinalCutProXXml(fcpxData)
     fs.writeFileSync(path.join(outputPath, util.dashed(basename + '.fcpxml')), fcpxml)
+
+    let kdenliveData = await exporterKdenlive.generateKdenliveData(boardData, { projectFileAbsolutePath, outputPath })
+    let kdenlivexml = exporterKdenlive.generateKdenliveXml(kdenliveData)
+    fs.writeFileSync(path.join(outputPath, util.dashed(basename + '.kdenlive')), mlt)
 
     // export ALL layers of each one of the boards
     let basenameWithoutExt = path.basename(projectFileAbsolutePath, path.extname(projectFileAbsolutePath))
@@ -97,7 +102,7 @@ class Exporter {
 
     return outputPath
   }
- 
+
   exportPDF (boardData, projectFileAbsolutePath, _paperSize, _paperOrientation, _rows, _cols, _spacing, _filepath, shouldWatermark = false, watermarkImagePath = undefined, watermarkDimensions = []) {
     return new Promise((resolve, reject) => {
       let outputPath = app.getPath('temp')

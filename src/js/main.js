@@ -179,9 +179,9 @@ app.on('ready', async () => {
         buttons: ['Move to Applications', 'Do Not Move'],
         defaultId: 1
       })
-    
+
       const yes = (choice === 0)
-      
+
       if (yes) {
         try {
           let didMove = app.moveToApplicationsFolder()
@@ -258,7 +258,7 @@ app.on('ready', async () => {
       }
     }
   }
- 
+
   // this only works on mac.
   if (toBeOpenedPath) {
     openFile(toBeOpenedPath)
@@ -296,7 +296,7 @@ let openKeyCommandWindow = () => {
 
 app.on('activate', ()=> {
   if (!mainWindow && !welcomeWindow) openWelcomeWindow()
-  
+
 })
 
 let openNewWindow = () => {
@@ -405,7 +405,7 @@ let openFile = filepath => {
 
           findOrCreateProjectFolder([
             scriptData,
-            locations,  
+            locations,
             characters,
             metadata
           ])
@@ -502,7 +502,7 @@ let openDialogue = () => {
 let importImagesDialogue = (shouldReplace = false) => {
   dialog.showOpenDialog(
     {
-      title:"Import Boards", 
+      title:"Import Boards",
       filters:[
         {name: 'Images', extensions: ['png', 'jpg', 'jpeg', 'psd']},
       ],
@@ -537,7 +537,7 @@ let importImagesDialogue = (shouldReplace = false) => {
             handleDirectory(filepath)
           }
         }
-        
+
         if (shouldReplace) {
           mainWindow.webContents.send('importImageAndReplace', filepathsRecursive)
         } else {
@@ -551,7 +551,7 @@ let importImagesDialogue = (shouldReplace = false) => {
 let importWorksheetDialogue = () => {
   dialog.showOpenDialog(
     {
-      title:"Import Worksheet", 
+      title:"Import Worksheet",
       filters:[
         {name: 'Images', extensions: ['png', 'jpg', 'jpeg']},
       ],
@@ -617,7 +617,7 @@ let processFountainData = (data, create, update) => {
         break
       case 'scene':
         metadata.sceneCount++
-        let id 
+        let id
         if (node.scene_id) {
           id = node.scene_id.split('-')
           if (id.length>1) {
@@ -657,7 +657,7 @@ let processFountainData = (data, create, update) => {
       break
   }
 
-  // unused 
+  // unused
   // if (update) {
   //   mainWindow.webContents.send('updateScript', 1)//, diffScene)
   // }
@@ -744,7 +744,7 @@ const ensureFdxSceneIds = fdxObj => {
     dialog.showMessageBox({
       type: 'info',
       message: 'We added scene IDs to the Final Draft script',
-      detail: "Scene IDs are what we use to make sure we put the storyboards in the right place. " + 
+      detail: "Scene IDs are what we use to make sure we put the storyboards in the right place. " +
               "If you have your script open in an editor, you should reload it. " +
               "Also, you can change your script around as much as you want, "+
               "but please don't change the scene IDs.",
@@ -809,7 +809,7 @@ const createAndLoadScene = aspectRatio =>
             await trash(filename)
           } else {
             dialog.showMessageBox(null, {
-              message: "Could not overwrite file " + path.basename(filename) + ". Only folders can be overwritten." 
+              message: "Could not overwrite file " + path.basename(filename) + ". Only folders can be overwritten."
             })
             return reject(null)
           }
@@ -827,13 +827,13 @@ const createAndLoadScene = aspectRatio =>
           defaultBoardTiming: prefs.defaultBoardTiming,
           boards: []
         }
-  
+
         fs.writeFileSync(filePath, JSON.stringify(newBoardObject))
         fs.mkdirSync(path.join(filename, 'images'))
-  
+
         addToRecentDocs(filePath, newBoardObject)
         loadStoryboarderWindow(filePath)
-  
+
         analytics.event('Application', 'new', newBoardObject.aspectRatio)
 
         resolve()
@@ -892,7 +892,7 @@ let loadStoryboarderWindow = (filename, scriptData, locations, characters, board
       experimentalCanvasFeatures: true,
       devTools: true,
       plugins: true
-    } 
+    }
   })
 
   let projectName = path.basename(filename, path.extname(filename))
@@ -1295,8 +1295,8 @@ ipcMain.on('exportVideo', (event, arg) => {
   mainWindow.webContents.send('exportVideo', arg)
 })
 
-ipcMain.on('exportFcp', (event, arg) => {
-  mainWindow.webContents.send('exportFcp', arg)
+ipcMain.on('exportXml', (event, arg) => {
+  mainWindow.webContents.send('exportXml', arg)
 })
 
 ipcMain.on('exportImages', (event, arg) => {

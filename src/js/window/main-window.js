@@ -394,7 +394,7 @@ const commentOnLineMileage = (miles) => {
     //   ]
     //   message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
     //   break
-    // case 1: 
+    // case 1:
     //   otherMessages = [
     //     "Looking great!!!",
     //     "Absolutely fantastic!",
@@ -410,7 +410,7 @@ const commentOnLineMileage = (miles) => {
     //   message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
     //   sfx.playEffect('tool-pencil')
     //   break
-    case 5: 
+    case 5:
       message.push('5 line miles.')
       otherMessages = [
         "You should be done with your rough drawing.",
@@ -426,7 +426,7 @@ const commentOnLineMileage = (miles) => {
       message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
       sfx.playEffect('tool-light-pencil')
       break
-    case 8: 
+    case 8:
       message.push('8 line miles.')
       otherMessages = [
         "Let's finish this up!",
@@ -442,7 +442,7 @@ const commentOnLineMileage = (miles) => {
       message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
       sfx.playEffect('tool-brush')
       break
-    case 10: 
+    case 10:
       message.push('10 miles!')
       otherMessages = [
         "Let's finish this up!",
@@ -458,7 +458,7 @@ const commentOnLineMileage = (miles) => {
       message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
       sfx.positive()
       break
-    case 20: 
+    case 20:
       message.push('20 miles!!!')
       otherMessages = [
         "This is done. Let's move on.",
@@ -473,7 +473,7 @@ const commentOnLineMileage = (miles) => {
       message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
       sfx.negative()
       break
-    case 50: 
+    case 50:
       message.push('50 miles!!!')
       otherMessages = [
         "Uhh.. I fell asleep. What did I miss?",
@@ -488,7 +488,7 @@ const commentOnLineMileage = (miles) => {
       message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
       sfx.negative()
       break
-    case 100: 
+    case 100:
       message.push('100 miles!!!')
       otherMessages = [
         "Nope!!! I'm going to delete this board if you keep drawing. Just kidding. Or am I?",
@@ -504,7 +504,7 @@ const commentOnLineMileage = (miles) => {
       message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
       sfx.error()
       break
-    case 200: 
+    case 200:
       message.push('200 miles!!!')
       otherMessages = [
         "Now you're just fucking with me.",
@@ -515,7 +515,7 @@ const commentOnLineMileage = (miles) => {
       message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
       sfx.error()
       break
-    case 300: 
+    case 300:
       message.push('300 miles!!!')
       otherMessages = [
         "I quit.",
@@ -526,7 +526,7 @@ const commentOnLineMileage = (miles) => {
       message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
       sfx.error()
       break
-    case 500: 
+    case 500:
       message.push('500 miles!!!')
       otherMessages = [
         "So close to 1000!!!",
@@ -534,7 +534,7 @@ const commentOnLineMileage = (miles) => {
       message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
       sfx.error()
       break
-    case 1000: 
+    case 1000:
       message.push('1000 miles!!!')
       otherMessages = [
         "Great job. :/ See ya.",
@@ -978,14 +978,14 @@ const loadBoardUI = async () => {
       dragTarget.style.scrollBehavior = 'smooth'
     })
   }
-  
+
   document.querySelector('#suggested-dialogue-duration').addEventListener('pointerdown', (e)=>{
     let board = boardData.boards[currentBoard]
     board.duration = e.target.dataset.duration
     renderMetaData()
   })
 
-    
+
     // for (var item of document.querySelectorAll('.thumbnail')) {
     //   item.classList.remove('active')
     // }
@@ -1070,7 +1070,7 @@ const loadBoardUI = async () => {
       if (el) {
         offset = el.getBoundingClientRect().width
         el = thumbnailFromPoint(x, y, offset/2)
-      } 
+      }
 
       if (!el) {
         console.warn("couldn't find nearest thumbnail")
@@ -1311,7 +1311,7 @@ const loadBoardUI = async () => {
   storyboarderSketchPane.on('requestPointerDown', () => {
     // if artist is drawing on the reference layer, ensure it has opacity
     if (
-      store.getState().toolbar.activeTool === 'light-pencil' && 
+      store.getState().toolbar.activeTool === 'light-pencil' &&
       storyboarderSketchPane.getLayerOpacity(
         storyboarderSketchPane.sketchPane.layers.findByName('reference').index) === 0
       ) {
@@ -1369,7 +1369,7 @@ const loadBoardUI = async () => {
 
 
   // setup timeline dragging
-  let tlEl = document.querySelector('#movie-timeline-content')  
+  let tlEl = document.querySelector('#movie-timeline-content')
   tlEl.addEventListener('pointerdown', () => {
     let onPointerMove = event => {
       let node = Number(event.target.dataset.node)
@@ -1382,7 +1382,7 @@ const loadBoardUI = async () => {
         }
       }
     }
-    
+
     let onPointerUp = () => {
       tlEl.removeEventListener('pointermove', onPointerMove)
       window.removeEventListener('pointerup', onPointerUp)
@@ -1390,7 +1390,7 @@ const loadBoardUI = async () => {
     tlEl.addEventListener('pointermove', onPointerMove)
     window.addEventListener('pointerup', onPointerUp)
   })
-  
+
 
 
   sfx.init()
@@ -2223,8 +2223,8 @@ let markImageFileDirty = layerIndices => {
 
 const addToLineMileage = value => {
   let board = boardData.boards[currentBoard]
-  if (!(board.lineMileage)) { 
-    board.lineMileage = 0 
+  if (!(board.lineMileage)) {
+    board.lineMileage = 0
   }
 
   let allowNotificationsForLineMileage = prefsModule.getPrefs()['allowNotificationsForLineMileage']
@@ -2528,7 +2528,7 @@ let openInEditor = async () => {
   try {
     let selectedBoards = []
 
-    // assume selection always includes currentBoard, 
+    // assume selection always includes currentBoard,
     // so make sure we've saved its contents to the filesystem
     await saveImageFile()
     // and indicate that it is now locked
@@ -2833,7 +2833,7 @@ const refreshLinkedBoardByFilename = async filename => {
   } else {
     // clear contents of layer PNGs that aren't in the PSD
     // TODO this will break when we add user-managed layers
-  
+
     // NOTE HACK assumes current boards visibleLayersIndices matches
     // the other board's layers organization!
 
@@ -2912,7 +2912,7 @@ const refreshLinkedBoardByFilename = async filename => {
 //       let imageData = canvas
 //         .toDataURL('image/png')
 //         .replace(/^data:image\/\w+;base64,/, '')
-    
+
 //       try {
 //         fs.writeFile(imageFilePath, imageData, 'base64', () => {
 //           resolve()
@@ -3041,7 +3041,7 @@ const updateThumbnailDisplayFromMemory = () => {
 //   let context = createSizedContext(size)
 //   fillContext(context, 'white')
 //   let imageData = context.canvas.toDataURL('image/png')
-// 
+//
 //   // cache image
 //   srcByUid[boardData.boards[index].uid] = imageData
 // }
@@ -3207,7 +3207,7 @@ let duplicateBoard = async () => {
     // sfx.bip('c7')
     sfx.down(-1, 2)
     notifications.notify({ message: 'Duplicated board.', timing: 5 })
-    
+
     return insertAt
   } catch (err) {
     console.error(err)
@@ -3489,7 +3489,7 @@ let renderMetaData = () => {
   // TODO how to regenerate tooltips?
   // if (boardData.defaultBoardTiming) {
   //   document.querySelector('input[name="duration"]').dataset.tooltipDescription = `Enter the number of milliseconds for a board. There are 1000 milliseconds in a second. ${boardData.defaultBoardTiming} milliseconds is the default.`
-  // 
+  //
   //   let defaultFramesPerBoard = Math.round(boardData.defaultBoardTiming / 1000 * 24)
   //   document.querySelector('input[name="frames"]').dataset.tooltipDescription = `Enter the number of frames for a board. There are 24 frames in a second. ${defaultFramesPerBoard} frames is the default.`
   // }
@@ -3536,11 +3536,11 @@ const renderStats = () => {
 
   let stats = []
   let totalNewShots = boardData.boards.reduce((a, b) => a + (b.newShot ? 1 : 0), 0) || 1
-  secondaryStats.push( 
+  secondaryStats.push(
     `${boardData.boards.length} ${util.pluralize(boardData.boards.length, 'board').toUpperCase()}, ` +
     `${totalNewShots} ${util.pluralize(totalNewShots, 'shot').toUpperCase()}`
   )
-  
+
   let totalLineMileage = boardData.boards.reduce((a, b) => a + (b.lineMileage || 0), 0)
   let avgLineMileage = totalLineMileage / boardData.boards.length
   secondaryStats.push( (avgLineMileage/5280).toFixed(1) + ' AVG. LINE MILEAGE' )
@@ -3560,9 +3560,9 @@ const renderStats = () => {
 
   // if (scriptData) {
   //   let numScenes = scriptData.filter(data => data.type == 'scene').length
-  
+
   //   let numBoards = 'N' // TODO sum total number of boards in the script
-  
+
   //   document.querySelector('#right-stats .stats-primary').innerHTML = `${numScenes} SCENES ${numBoards} BOARDS`
   // } else {
   //   let numBoards = boardData.boards.length
@@ -3760,7 +3760,7 @@ function * loadSketchPaneLayers (signal, board, indexToLoad) {
 
   // if a link exists, lock the board
   storyboarderSketchPane.setIsLocked(board.link != null)
-  
+
   // load opacity from data, if data exists
   let referenceOpacity = board.layers &&
                          board.layers.reference &&
@@ -4125,7 +4125,7 @@ let renderThumbnailButtons = () => {
       <div class="icon">✚</div>
     `
     drawerEl.appendChild(el)
-    
+
     el.addEventListener('pointerdown', event => {
       // TODO can we remove this? is it still necessary?
       let eventMouseOut = document.createEvent('MouseEvents')
@@ -4374,7 +4374,7 @@ let setDragTarget = (x) => {
 
   let mouseX = x - containerRect.left
   let midpointX = containerRect.width / 2
-  
+
   // distance ratio -1...0...1
   let distance = (mouseX - midpointX) / midpointX
 
@@ -4384,7 +4384,7 @@ let setDragTarget = (x) => {
   if (distance < -0.5)
   {
     strength = -util.norm(distance, -0.5, -1)
-  } 
+  }
   // 0.5..1
   else if (distance > 0.5)
   {
@@ -4407,7 +4407,7 @@ let updateDrag = () => {
     return
   }
 
-  
+
   if (isEditMode && dragMode) {
     setDragTarget(lastPointer.x)
     updateThumbnailCursor(lastPointer.x, lastPointer.y)
@@ -4600,7 +4600,7 @@ window.onkeydown = (e) => {
         e.target.blur()
       }
       break
-  
+
       // text
       case 'dialogue':
       case 'action':
@@ -4611,7 +4611,7 @@ window.onkeydown = (e) => {
       break
     }
   }
-  
+
   if (!textInputMode) {
     // console.log('window.onkeydown', e)
 
@@ -4814,8 +4814,8 @@ let playAdvance = async (first, isComplete) => {
       frameDuration = boardData.defaultBoardTiming
     }
     frameTimer = setTimeout(
-      playAdvance, 
-      frameDuration, 
+      playAdvance,
+      frameDuration,
       false, // first
       currentBoard === boardData.boards.length - 1 // isComplete
     )
@@ -5255,7 +5255,7 @@ const importImage = async imageDataURL => {
  * of all visible layers as an 'image' to the clipboard.
  *
  */
- 
+
 // TODO cancel token
 let copyBoards = async () => {
   if (textInputMode) return // ignore copy command in text input mode
@@ -5376,12 +5376,12 @@ const exportAnimatedGif = async () => {
 }
 
 
-const exportFcp = () => {
+const exportXml = () => {
   notifications.notify({message: "Exporting " + boardData.boards.length + " boards to FCP and Premiere. Please wait...", timing: 5})
   sfx.down()
   setTimeout(()=>{
-    exporter.exportFcp(boardData, boardFilename).then(outputPath => {
-      notifications.notify({message: "Your scene has been exported for Final Cut Pro X and Premiere.", timing: 20})
+    exporter.exportXml(boardData, boardFilename).then(outputPath => {
+      notifications.notify({message: "Your scene has been exported for Final Cut Pro X, Premiere and Kdenlive.", timing: 20})
       sfx.positive()
       shell.showItemInFolder(outputPath)
     }).catch(err => {
@@ -5555,15 +5555,15 @@ let pasteBoards = async () => {
       // copy linked boards
       newBoards.forEach((dst, n) => {
         let src = oldBoards[n]
-    
+
         // NOTE: audio is not copied
-    
+
         if (src.link) {
           // TODO is link being migrated properly?
           // see: https://github.com/wonderunit/storyboarder/issues/1165
           let from  = path.join(boardPath, 'images', src.link)
           let to    = path.join(boardPath, 'images', boardModel.boardFilenameForLink(dst))
-    
+
           if (fs.existsSync(from)) {
             console.log('copying linked PSD', from, 'to', to)
             fs.writeFileSync(to, fs.readFileSync(from))
@@ -5573,7 +5573,7 @@ let pasteBoards = async () => {
               timing: 8
             })
           }
-    
+
         }
       })
 
@@ -5607,7 +5607,7 @@ let pasteBoards = async () => {
     notifications.notify({ message: "There's nothing in the clipboard that I can paste. Are you sure you copied it right?", timing: 8 })
     sfx.error()
     throw new Error('empty clipboard')
-  }  
+  }
 }
 
 // paste to current board
@@ -5733,7 +5733,7 @@ const pasteAndReplace = async () => {
     }
   } else {
     throw new Error("There's nothing in the clipboard that I can paste. Are you sure you copied it correctly?")
-  }  
+  }
 }
 
 const insertBoards = async (dest, insertAt, boards, { layerDataByBoardIndex }) => {
@@ -6020,11 +6020,11 @@ let updateThumbnailCursor = (x, y) => {
   if (el) {
     offset = el.getBoundingClientRect().width
     el = thumbnailFromPoint(x, y, offset/2)
-  } 
+  }
 
   if (el) thumbnailCursor.el = el // only update if found
   if (!el) return
-  
+
   // store a reference to the nearest thumbnail
   thumbnailCursor.el = el
 
@@ -6036,14 +6036,14 @@ let updateThumbnailCursor = (x, y) => {
                       el.offsetParent.offsetParent.scrollLeft
 
   let elementOffsetX = el.getBoundingClientRect().right
-  
+
   // is this an end shot?
   if (el.classList.contains('endShot')) {
     elementOffsetX += 5
   }
 
   let arrowOffsetX = -8
-  
+
   thumbnailCursor.x = sidebarOffsetX +
                       scrollOffsetX +
                       elementOffsetX +
@@ -6119,9 +6119,9 @@ const welcomeMessage = () => {
   ]
   message.push(otherMessages[Math.floor(Math.random()*otherMessages.length)])
   notifications.notify({message: message.join(' '), timing: 10})
-} 
+}
 
-const setupRandomizedNotifications = () => {  
+const setupRandomizedNotifications = () => {
   let defaultMessages = util.shuffle(NotificationData.messages)
   //setTimeout(()=>{welcomeMessage()}, 1000)
   setTimeout(()=>{runRandomizedNotifications(defaultMessages)}, 3000)
@@ -6342,7 +6342,7 @@ const showSignInWindow = () => {
       experimentalCanvasFeatures: true,
       devTools: true,
       plugins: true
-    } 
+    }
   })
   exportWebWindow.loadURL(`file://${__dirname}/../../upload.html`)
   exportWebWindow.once('ready-to-show', () => {
@@ -6636,9 +6636,9 @@ ipcRenderer.on('exportAnimatedGif', (event, args) => {
   ipcRenderer.send('analyticsEvent', 'Board', 'exportAnimatedGif')
 })
 
-ipcRenderer.on('exportFcp', (event, args) => {
-  exportFcp()
-  ipcRenderer.send('analyticsEvent', 'Board', 'exportFcp')
+ipcRenderer.on('exportXml', (event, args) => {
+  exportXml()
+  ipcRenderer.send('analyticsEvent', 'Board', 'exportXml')
 })
 
 ipcRenderer.on('exportImages', (event, args) => {
@@ -6665,7 +6665,7 @@ ipcRenderer.on('exportPrintablePdf', (event, sourcePath, filename) => {
   let outputPath = path.join(
     exporterCommon.ensureExportsPathExists(boardFilename), filename + ' ' + moment().format('YYYY-MM-DD hh.mm.ss') + '.pdf'
   )
-  
+
   if (!fs.existsSync(outputPath)) {
     fs.writeFileSync(outputPath, fs.readFileSync(sourcePath))
 
@@ -6676,7 +6676,7 @@ ipcRenderer.on('exportPrintablePdf', (event, sourcePath, filename) => {
     }
     sfx.positive()
     shell.showItemInFolder(outputPath)
-  
+
   } else {
     console.error('File exists')
     sfx.error()
@@ -6702,15 +6702,15 @@ ipcRenderer.on('printWorksheet', (event, args) => {
 const openPrintWindow = (printWindowType, showPrintWindow) => {
   if (!printWindow[printWindowType]) {
     printWindow[printWindowType] = new remote.BrowserWindow({
-      width: 1200, 
-      height: 800, 
-      minWidth: 600, 
-      minHeight: 600, 
+      width: 1200,
+      height: 800,
+      minWidth: 600,
+      minHeight: 600,
       backgroundColor: '#333333',
-      show: false, 
-      center: true, 
-      parent: remote.getCurrentWindow(), 
-      resizable: true, 
+      show: false,
+      center: true,
+      parent: remote.getCurrentWindow(),
+      resizable: true,
       frame: false,
       modal: true
     })
@@ -6752,16 +6752,16 @@ ipcRenderer.on('importNotification', () => {
 ipcRenderer.on('importWorksheets', (event, args) => {
   if (!importWindow) {
     importWindow = new remote.BrowserWindow({
-      width: 1200, 
-      height: 800, 
-      minWidth: 600, 
-      minHeight: 600, 
+      width: 1200,
+      height: 800,
+      minWidth: 600,
+      minHeight: 600,
       backgroundColor: '#333333',
-      show: false, 
-      center: true, 
-      parent: remote.getCurrentWindow(), 
-      resizable: true, 
-      frame: false, 
+      show: false,
+      center: true,
+      parent: remote.getCurrentWindow(),
+      resizable: true,
+      frame: false,
       modal: true
     })
     importWindow.loadURL(`file://${__dirname}/../../import-window.html`)

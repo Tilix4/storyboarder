@@ -73,7 +73,7 @@ class Exporter {
 
     let kdenliveData = await exporterKdenlive.generateKdenliveData(boardData, { projectFileAbsolutePath, outputPath })
     let kdenlivexml = exporterKdenlive.generateKdenliveXml(kdenliveData)
-    fs.writeFileSync(path.join(outputPath, util.dashed(basename + '.kdenlive')), mlt)
+    fs.writeFileSync(path.join(outputPath, util.dashed(basename + '.kdenlive')), kdenlivexml)
 
     // export ALL layers of each one of the boards
     let basenameWithoutExt = path.basename(projectFileAbsolutePath, path.extname(projectFileAbsolutePath))

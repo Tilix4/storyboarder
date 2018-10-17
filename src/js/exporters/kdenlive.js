@@ -7,47 +7,31 @@ const { msecsToFrames } = require('./common')
 const { boardFileImageSize, boardFilenameForExport } = require('../models/board')
 const util = require('../utils')
 
-// fcp templating
+// kdenlive templating
 const clipItem = data =>
 `
-          <clipitem id="${data.id}">
-            <!-- id -->
-            <masterclipid>${data.masterClipId}</masterclipid>
-            <!-- set name if dialogue or action, otherwise filename -->
-            <name>${data.name}</name>
-            <description>${data.description}</description>
-            <enabled>TRUE</enabled>
-            <duration>${data.duration}</duration>
-            <rate>
-              <timebase>${data.timebase}</timebase>
-              <ntsc>${data.ntsc}</ntsc>
-            </rate>
-            <!-- start time in frames (${data.timebase}fps) -->
-            <start>${data.start}</start>
-            <!-- end time in frames (${data.timebase}fps) -->
-            <end>${data.end}</end>
-            <in>107892</in>
-            <out>107916</out>
-            <!-- file id -->
-            <file id="${data.fileId}">
-              <!-- filename -->
-              <name>${data.fileFilename}</name>
-              <pathurl>${data.filePathUrl}</pathurl>
-              <media>
-                <video>
-                  <samplecharacteristics>
-                    <!-- width -->
-                    <width>${data.fileWidth}</width>
-                    <!-- height -->
-                    <height>${data.fileHeight}</height>
-                  </samplecharacteristics>
-                </video>
-              </media>
-            </file>
-            <labels>
-              <label2>${data.label2}</label2>
-            </labels>
-          </clipitem>
+          <producer title="${data.id}" id="${data.masterClipId}"" in="${data.start}" out="${data.end}">
+            <property name="length">${data.duration}</property>
+            <property name="eof">pause</property>
+            <property name="resource">/home/felix/Downloads/Image2.jpg</property>
+            <property name="ttl">${data.timebase}</property>
+            <property name="aspect_ratio">1</property>
+            <property name="progressive">1</property>
+            <property name="seekable">1</property>
+            <property name="loop">1</property>
+            <property name="meta.media.width">${data.fileWidth}</property>
+            <property name="meta.media.height">${data.fileHeight}</property>
+            <property name="mlt_service">pixbuf</property>
+            <property name="kdenlive:clipname"/>
+            <property name="kdenlive:duration">125</property>
+            <property name="kdenlive:id">9</property>
+            <property name="kdenlive:file_size">115654</property>
+            <property name="kdenlive:file_hash">d869d608ab55c8505faafac3aafbbe2e</property>
+            <property name="kdenlive:folderid">-1</property>
+            <property name="global_feed">1</property>
+            <property name="kdenlive:zone_in">${data.start}</property>
+            <property name="kdenlive:zone_out">${data.end}</property>
+          </producer>
 `
 
 const stereoTrack = data => `
@@ -155,7 +139,7 @@ const audioClip = data => `
 
 const generateKdenliveXml = data =>
 `<?xml version='1.0' encoding='utf-8'?>
-<mlt title="Anonymous Submission" LC_NUMERIC="fr_FR" producer="main bin" version="6.7.0" root="C:/Users/fdavid/Documents">
+<mlt title="${data.sequenceId}" LC_NUMERIC="fr_FR" producer="main bin" version="6.7.0" root="C:/Users/fdavid/Documents">
  <profile frame_rate_num="25" sample_aspect_num="1" display_aspect_den="9" colorspace="709" progressive="1" description="HD 1080p 25 fps" display_aspect_num="16" frame_rate_den="1" width="1920" height="1080" sample_aspect_den="1"/>
  <playlist id="main bin">
   <property name="kdenlive:docproperties.audiotargettrack">2</property>
